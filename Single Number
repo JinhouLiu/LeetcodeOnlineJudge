@@ -46,3 +46,30 @@ solution=A[i];
 return  solution;
 }  		
 }
+
+
+//the simlpe  answer,use the XOR　characteristic　
+  
+public class Solution {
+
+
+
+public int  singleNumber(int[]   A)
+{
+
+int  result=0;
+
+for(int i =0;i<A.length;i++)
+{
+
+result^=A[i];
+	
+}
+
+return  result; 
+
+}
+
+
+}
+
