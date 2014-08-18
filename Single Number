@@ -1,0 +1,48 @@
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class Solution {
+
+
+
+public int singleNumber(int[] A){
+
+	
+Map<Integer,Integer> countMap=new  HashMap<Integer, Integer>();  
+
+
+for (int i = 0; i < A.length; i++){
+
+ int   number=A[i];
+ 
+  int  count=0;
+ 
+ if(countMap.containsKey(number)){
+
+ count=countMap.get(number);	 
+ count++;	 
+	 
+}else {
+	
+count++;
+
+}
+ 
+countMap.put(number, count);	
+	
+}
+
+int  solution=0;
+
+for (int i = 0; i < A.length; i++) {
+
+if (countMap.get(A[i])==1){
+	
+solution=A[i];	
+}	
+	
+}
+return  solution;
+}  		
+}
