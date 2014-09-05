@@ -136,3 +136,18 @@ public TreeNode(int val){
 this.val=val;	
 }
 }
+//question  4
+public static List<Integer> postorderTraversal(TreeNode root)
+{
+if (root==null){
+return list; 	
+}		
+if(root.left!=null){
+postorderTraversal(root.left);	
+}
+if(root.right!=null){
+postorderTraversal(root.right);
+}
+list.add(root.val);
+return list;
+}
