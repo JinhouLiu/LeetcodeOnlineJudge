@@ -94,3 +94,45 @@ public TreeNode(int  val)
 this.val=val;	
 }
 }
+
+//the thrid
+
+import java.util.ArrayList;
+import java.util.List;
+public class Solution{	
+static ArrayList<Integer> list=new  ArrayList<>(); 	
+public static List<Integer> postorderTraversal(TreeNode root)
+{
+if (root==null){
+return list; 	
+}		
+if(root.left!=null){
+postorderTraversal(root.left);	
+}
+if(root.right!=null){
+postorderTraversal(root.right);
+}
+list.add(root.val);
+return list; 
+}
+public static void main(String[]  args)
+{	
+TreeNode  n1=new TreeNode(1); 	
+TreeNode  n2=new TreeNode(2);
+TreeNode  n3=new TreeNode(3);
+n1.left=n2;
+//n2.left=n3;
+postorderTraversal(n1);
+for(int i = 0;i<list.size();i++){	
+System.out.println(list.get(i));		
+}
+}
+}
+class TreeNode
+{
+int val;
+TreeNode left,right;
+public TreeNode(int val){	
+this.val=val;	
+}
+}
