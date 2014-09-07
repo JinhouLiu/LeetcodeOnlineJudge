@@ -62,7 +62,7 @@ public TreeNode(int  val){
 this.val=val;	
 }
 }
-//一种未使用堆栈，广为推荐的答案
+//一种未使用堆栈，广为推荐的答案,思想很好，在实际工程中不推荐使用，开阔下思路，但想法很好
 public class Solution{
 public static void flatten(TreeNode root)
 {	
