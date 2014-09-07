@@ -62,3 +62,23 @@ public TreeNode(int  val){
 this.val=val;	
 }
 }
+//一种未使用堆栈，广为推荐的答案
+public class Solution{
+public static void flatten(TreeNode root)
+{	
+if(root==null){	
+return;
+}
+while(root!=null){
+if(root.left!=null){
+TreeNode cur=root.left;
+while (cur.right!=null) cur=cur.right; 	  
+cur.right=root.right;
+root.right=root.left;
+root.left=null;
+}
+root=root.right;
+}
+}
+}
+//使用堆栈的答案
