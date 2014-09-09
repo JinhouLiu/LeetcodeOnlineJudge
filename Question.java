@@ -151,3 +151,31 @@ postorderTraversal(root.right);
 list.add(root.val);
 return list;
 }
+//Problem  6
+public static RandomListNode copyRandomList(RandomListNode head)
+{	
+if(head==null){
+return null;
+}
+RandomListNode p=head;
+while(p!=null){	
+RandomListNode q=new RandomListNode(p.label);
+q.next=p.next;
+p.next=q;
+}
+p=head;
+while(p!=null){
+p.next.random=(p.random==null?null:p.random.next);
+p=p.next.next;
+}
+p=head;
+RandomListNode r=p.next;
+for(RandomListNode q=r;;){
+p.next=q.next;
+p=p.next;
+if(p==null) break;
+q.next=p.next;
+q=q.next;
+}
+return r;
+}
