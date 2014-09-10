@@ -38,8 +38,36 @@ public static void  main(String[]  args)
 
 }
 
-
+／／使用队列的方式，也通过了leetcode ｏｎｌｉｎｅｊｕｄｇｅ测试    
+public  static  List<List<Integer>>   levelOrder(TreeNode root){	
+List<List<Integer>> result=new ArrayList<>();   
+if(root==null){	
+return  result;
 }
+Queue<TreeNode> queue=new LinkedList<>(); 
+queue.offer(root);
+int count=0; 
+while(!queue.isEmpty()){
+List<Integer> val=new ArrayList<>(); 	
+count=queue.size();	
+while (count>0){
+TreeNode node=queue.poll();
+val.add(node.val);
+if(node.left!=null){
+queue.offer(node.left);	
+}
+if(node.right!=null){	
+queue.offer(node.right);	
+}
+count--;
+}
+result.add(val);
+//val.clear();
+}
+return  result; 
+}		
+
+｝
 class  TreeNode
 {
 int  val;
