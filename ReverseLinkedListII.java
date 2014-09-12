@@ -7,6 +7,8 @@ if(head==null||head.next==null||m==n){
 return  head;
 
 }
+//辅助头结点不可避免
+
 ListNode  helper=new ListNode(Integer.MIN_VALUE);
 helper.next=head;
 ListNode p=helper; 
