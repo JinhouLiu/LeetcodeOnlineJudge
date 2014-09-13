@@ -179,3 +179,70 @@ q=q.next;
 }
 return r;
 }
+import java.util.ArrayList;
+import java.util.List;
+public class  Solution{
+public static List<Interval> merge(List<Interval> intervals)
+{
+List<Interval> list=new ArrayList<Interval>();
+if(intervals==null){	
+return list;
+}
+for(int i=0;i<(intervals.size()-1);i++)
+{
+if(intervals.get(i).compareTo(intervals.get(i+1))==1){	
+Interval temp=intervals.get(i);
+intervals.set(i, intervals.get(i+1));
+intervals.set(i+1, temp);	
+}	
+}
+Interval  temp=intervals.get(0); 
+for(int i=1;i<intervals.size();i++)
+{
+if(temp.end>=intervals.get(i).start){
+temp.end=Math.max(temp.end, intervals.get(i).end);	
+}
+else{	
+list.add(temp);	
+temp=intervals.get(i);
+}	
+}
+list.add(temp);
+return list; 
+}	
+public static  void  main(String[]  args)
+{
+Interval   n1=new Interval(1,4);
+Interval   n2=new Interval(0,0);
+Interval   n3=new Interval(3,5);
+Interval   n4=new Interval(15, 18);
+List<Interval>  list=new  ArrayList<>();
+list.add(n1);
+list.add(n2);
+//list.add(n3);
+//list.add(n4);
+List<Interval> newList=merge(list);
+for(int i = 0; i<newList.size();i++){	
+System.out.print("["+newList.get(i).start+"\t"+newList.get(i).end+"]");		
+}
+} 
+}
+class Interval  implements Comparable<Interval>  
+{
+          int start;
+	      int end;
+	      Interval() { start = 0; end = 0; }
+	      Interval(int s, int e) { start = s; end = e; }
+		@Override
+		 public int compareTo(Interval o) {
+		   
+           if(this.start>o.start)
+           {
+        	 return 1;    
+           }
+           else {
+			
+        	return  0;
+		}
+	 }
+}
