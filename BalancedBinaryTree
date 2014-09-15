@@ -1,9 +1,3 @@
-question
-
-Given a binary tree, determine if it is height-balanced.
-
-For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
-
 /**
  * Definition for binary tree
  * public class TreeNode {
@@ -13,26 +7,74 @@ For this problem, a height-balanced binary tree is defined as a binary tree in w
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
-    
-public boolean isBalanced(TreeNode  root) 
+public  class  Solution{
+//方法一,思路很好，但时间效率不高    
+public boolean isBalanced(TreeNode root) 
 {
-    
 if(root==null)
 {	
 return true;
 }else if(Math.abs(depth(root.left)-depth(root.right))>1){	
 return false;	
-}else {
-return  isBalanced(root.left)&&isBalanced(root.right); 
+}else{
+return isBalanced(root.left)&&isBalanced(root.right); 
 }	 
 }
-
-public  int  depth(TreeNode  root)
+public int depth(TreeNode  root)
 {
 if(root==null){
 return 0;
 }
 return Math.max(depth(root.left), depth(root.right))+1; 
-} 
+}
+}
+//c语言定义及更好的解法,何老师代码
+struct BinaryTreeNode // a node of the binary tree
+{
+int               m_nValue; // value of node
+BinaryTreeNode  *m_pLeft;  // left child of node
+BinaryTreeNode  *m_pRight; // right child of node
+};
+///////////////////////////////////////////////////////////////////////
+// Get depth of a binary tree
+// Input: pTreeNode - the head of a binary tree
+// Output: the depth of a binary tree
+///////////////////////////////////////////////////////////////////////
+int TreeDepth(SBinaryTreeNode *pTreeNode)
+{
+//the depth of a empty tree is 0
+if(!pTreeNode)
+return 0;
+// the depth of left sub-tree
+int nLeft = TreeDepth(pTreeNode->m_pLeft);
+// the depth of right sub-tree
+int nRight = TreeDepth(pTreeNode->m_pRight);
+// depth is the binary tree
+return (nLeft > nRight) ? (nLeft + 1) : (nRight + 1);
+}
+//更好的方法
+bool IsBalanced(BinaryTreeNode* pRoot, int* pDepth)
+{
+if(pRoot == NULL)
+{
+*pDepth = 0;
+return true;
+}
+int left, right;
+if(IsBalanced(pRoot->m_pLeft, &left)&& IsBalanced(pRoot->m_pRight, &right))
+{
+int diff = left - right;
+if(diff <= 1 && diff >= -1)
+{
+*pDepth = 1 + (left > right ? left : right);
+return true;
+}
+}
+return false;
+}
+//传入一个整数
+bool IsBalanced(BinaryTreeNode* pRoot)
+{
+int depth = 0;
+return IsBalanced(pRoot, &depth);
 }
