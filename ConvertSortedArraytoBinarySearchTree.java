@@ -33,15 +33,13 @@ result.add(val);
 }
 return  result; 
 }			
-	
+//通过测试	
 public static  TreeNode sortedArrayToBST(int[] num)
 {
 	
 return sortedArrayToBST(num, 0, num.length-1);
 
 }
-
-static  int  i=0; 
 public   static TreeNode  sortedArrayToBST(int[] num,int  start,int  end){
 if (start>end){
 return  null;		
@@ -49,14 +47,13 @@ return  null;
 int mid=start+(end-start)/2;
  
 TreeNode left=sortedArrayToBST(num,start,mid-1);
-TreeNode root=new TreeNode(num[i++]);  
+TreeNode root=new TreeNode(num[mid]);  
 root.left=left;
 root.right=sortedArrayToBST(num, mid+1, end);
 return root; 
 }
 public  static  void  main(String[]  args)
 {
-//没怎么想测试用例，通不过在线测试
 Long  start=System.nanoTime(); 	
 int[] a={1,3};  	
 TreeNode n=sortedArrayToBST(a, 0,a.length-1);
