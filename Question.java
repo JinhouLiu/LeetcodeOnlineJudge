@@ -1,6 +1,29 @@
 import java.util.ArrayList;
 import java.util.List;
 public class Solution4{
+
+public static  void  merge(int A[], int m, int B[], int n)
+{
+	
+for(int idx=m+n-1;idx>=0;idx--)
+{	
+if(m<=0)
+{	
+A[idx]=B[--n];
+}
+else if(n<=0)
+{	
+break;
+}
+if(A[m-1]<B[n-1])
+{	
+A[idx]=B[--n];		
+}
+else  
+{	
+A[idx]=A[--m];
+}
+}	
 	
 public static ArrayList<Integer> getRow(int rowIndex)
 {	
