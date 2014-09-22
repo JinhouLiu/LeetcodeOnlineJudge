@@ -28,6 +28,8 @@ for(int i = 0; i < lists.size();i++)
 System.out.println(lists.get(i));
 }
 }
+
+//错误代码
 public static LinkedList<LinkedList<Integer>>  pathSum(TreeNode root,int sum)
 {	
 LinkedList<LinkedList<Integer>> result=new  LinkedList<>();
