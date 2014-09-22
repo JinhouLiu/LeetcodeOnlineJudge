@@ -70,3 +70,37 @@ public TreeNode(int  val)
 this.val=val; 	
 }
 }
+//本地通过测试代码,但给出编译错误
+public static LinkedList<LinkedList<Integer>>  pathSum(TreeNode root,int sum)
+{	
+LinkedList<LinkedList<Integer>> result=new  LinkedList<>();
+if(root==null)
+{	
+return result;
+}
+result.addAll(bfs(root,sum,new  LinkedList<>(),0));
+return  result; 
+}
+private  static LinkedList<LinkedList<Integer>>  bfs(TreeNode root,int sum,LinkedList<Integer>list,int count)
+{
+LinkedList<LinkedList<Integer>> result=new LinkedList<>(); 
+if(root.left==null&&root.right==null)
+{
+if((root.val+count)==sum)	
+{
+list.addLast(root.val);	
+result.add(list);
+}
+return result;  
+}
+list.add(root.val);
+if(root.left!=null)
+{
+result.addAll(bfs(root.left, sum,new LinkedList<Integer>(list),count+root.val));	
+}
+if(root.right!=null)
+{
+ result.addAll( bfs(root.right,sum,new LinkedList<>(list), count+root.val));		
+}
+return result;
+} 
