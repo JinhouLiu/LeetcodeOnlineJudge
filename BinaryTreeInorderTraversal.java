@@ -1,6 +1,10 @@
 public class Solution{
-
-／／递归中序遍历
+  
+public  static  void  main(String[] args)
+{
+//只想过最简单的测试用例
+}   
+//递归中序遍历
 public static  List<Integer> inorderTraversal(TreeNode root)
 {	
 List<Integer> list=new ArrayList<>();
@@ -43,8 +47,42 @@ p=p.right;
 return  list;
 } 
 }
-
-／／节点类构造
+//一种不使用额外空间的方法
+public static List<Integer>  inorderTraversal(TreeNode root)
+{
+if(root==null)
+{
+return;		
+}
+TreeNode pre,current=root;
+while(current!=null){
+if(current.left==null)
+{
+System.out.print(current.val+"\t");	
+current=current.right;
+}
+else
+{
+pre=current.left;
+while(pre.right!=null&&pre.right!=current)
+{
+pre=pre.right;		
+}
+if(pre.right==null)
+{
+pre.right=current;
+current=current.left;
+}
+else
+{
+pre.right=null;
+System.out.print(current.val+"\t");
+current=current.right;
+}
+}
+}
+}
+//节点类构造
 class TreeNode
 {
 int  val;
