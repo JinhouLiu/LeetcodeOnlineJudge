@@ -39,6 +39,42 @@ l2.next=mergeTwoLists(l1,l2.next);
 return  l2;
 }
 }
+//基于优先堆的实现
+public static ListNode mergeKLists(List<ListNode> lists)
+{
+if(lists==null||lists.size()==0)
+{
+return null;	
+}
+if(lists.size()==1)
+{	
+return  lists.get(0); 	
+}
+ListNode helper=new  ListNode(Integer.MIN_VALUE);
+ListNode  cur=helper;    
+PriorityQueue<ListNode> queue=new  PriorityQueue<>(lists.size(), new   Comparator<ListNode>(){
+@Override
+public int compare(ListNode o1, ListNode o2)
+{
+if(o1.val>o2.val) return 1; 	
+else if (o1.val<o2.val)  return -1;
+else return 0; 
+}
+});
+for(int i = 0;i<lists.size();i++)
+{
+if(lists.get(i)!=null)
+queue.add(lists.get(i));		
+}
+while(!queue.isEmpty())
+{	
+cur.next=queue.poll();	
+cur=cur.next;
+if(cur.next!=null)
+queue.add(cur.next); 	
+}
+return helper.next; 
+}
 public  static  void  main(String[] args)
 {
 //没想测试用例,通过在线测试
