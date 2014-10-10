@@ -1,3 +1,4 @@
+//非递归写法
 public class Solution{
 public static  void  main(String[]  args)
 {
@@ -166,4 +167,32 @@ public static ListNode addTwoNumbers(ListNode l1,ListNode l2)
 	}
 	return helper.next;  
 	}		
+}
+一种递归写法，代码更精简
+public class Solution{
+public static ListNode addTwoNumbers(ListNode l1,ListNode l2)
+{
+if(l1==null&&l2==null)
+{
+return  null; 	
+}	
+return  addLists(0,l1, l2); 
+}
+public static ListNode addLists(int   carry,ListNode  l1,ListNode  l2)
+{
+	
+if(l1==null&&l2==null)
+{
+if(carry==0)return null;	
+else
+return new ListNode(carry); 	
+}	
+ListNode result=new ListNode(carry);
+int val=carry;
+if(l1!=null) val+=l1.val;
+if(l2!=null) val+=l2.val;
+result.val=val%10;
+result.next=addLists(val>=10?1:0,l1==null?null:l1.next,l2==null?null:l2.next);
+return  result; 
+}     		
 }
