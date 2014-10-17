@@ -2,8 +2,7 @@ public class Solution {
 	
       //剑指offer原题 	
 	public static void main(String[] args) {
-		int[] num = { 2, 3, 1 };
-		System.out.println(findMin(num));
+	
 	}
 
 	public static int findMin(int[] num) {
