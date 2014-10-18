@@ -1,6 +1,11 @@
-import java.util.LinkedList;
-public class Solution
-{	
+
+	
+
+//正确通过测试的代码，利用堆栈的思想
+import java.util.ArrayList;
+public class  Solution1
+{
+//简单测试样例 
 public static void main(String[]  args)
 {	
 TreeNode  n1=new TreeNode(5);
@@ -27,82 +32,42 @@ for(int i = 0; i < lists.size();i++)
 {	
 System.out.println(lists.get(i));
 }
-}
-
-//错误代码
-public static LinkedList<LinkedList<Integer>>  pathSum(TreeNode root,int sum)
-{	
-LinkedList<LinkedList<Integer>> result=new  LinkedList<>();
-LinkedList<Integer>  temp=new  LinkedList<>(); 
-if(root==null)
-{	
-return result;
-}
- return bfs(root,sum,result,temp,0);
-}
-public  static  LinkedList<LinkedList<Integer>>  bfs(TreeNode root,int sum,  LinkedList<LinkedList<Integer>> lists,LinkedList<Integer>list,int count)
+	
+static ArrayList<ArrayList<Integer>>  result;
+static ArrayList<Integer> stack;   
+public  static  void  search(TreeNode  root,int sum)
 {
-if(root==null)
+if(root==null) return;
+stack.add(root.val);
+if(root.left==null&&root.right==null)
 {
-return lists;		
-}
-list.addLast(root.val);
-if(root.left==null&&root.right==null&&(root.val+count)==sum)
+if(root.val==sum)
 {
-lists.add(list);	
+ArrayList<Integer>	ans=new  ArrayList<>();
+for(Integer   item: stack) ans.add(item);	
+result.add(ans);
 }
-if(root.left!=null)
+}else
 {
-bfs(root.left, sum, lists, list, count+root.val);	
+search(root.left,sum-root.val);
+search(root.right,sum-root.val);		
 }
-if(root.right!=null)
+stack.remove(stack.size()-1);
+}  
+public static  ArrayList<ArrayList<Integer>> pathSum(TreeNode  root,int sum)
 {
-bfs(root.right, sum, lists, list, count+root.val);		
-}
-list.pollLast();
-return  lists;
-}   
+result=new ArrayList<>();
+stack=new ArrayList<>();
+search(root, sum);
+return  result;
+} 
 }
 class  TreeNode
 {
 int val;
-TreeNode  left,right;
+TreeNode left,right;
 public TreeNode(int  val)
 {
-this.val=val; 	
+this.val=val;	 
 }
 }
-//本地通过测试代码,但给出编译错误
-public static LinkedList<LinkedList<Integer>>  pathSum(TreeNode root,int sum)
-{	
-LinkedList<LinkedList<Integer>> result=new  LinkedList<>();
-if(root==null)
-{	
-return result;
-}
-result.addAll(bfs(root,sum,new  LinkedList<>(),0));
-return  result; 
-}
-private  static LinkedList<LinkedList<Integer>>  bfs(TreeNode root,int sum,LinkedList<Integer>list,int count)
-{
-LinkedList<LinkedList<Integer>> result=new LinkedList<>(); 
-if(root.left==null&&root.right==null)
-{
-if((root.val+count)==sum)	
-{
-list.addLast(root.val);	
-result.add(list);
-}
-return result;  
-}
-list.add(root.val);
-if(root.left!=null)
-{
-result.addAll(bfs(root.left, sum,new LinkedList<Integer>(list),count+root.val));	
-}
-if(root.right!=null)
-{
- result.addAll( bfs(root.right,sum,new LinkedList<>(list), count+root.val));		
-}
-return result;
-} 
