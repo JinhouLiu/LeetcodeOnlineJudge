@@ -1,6 +1,13 @@
 public class Solution5 {
  
-//不理解题目意思　
+//不理解题目意思
+
+
+The main idea is:
+
+separate s1 into two parts, namely --s11--, --------s12--------
+separate s2 into two parts, namely --s21--, --------s22--------, and test the corresponding part (s11 and s21 && s12 and s22) with isScramble.
+separate s2 into two parts, namely --------s23--------, --s24--, and test the corresponding part (s11 and s24 && s12 and s23) with isScramble
 
 public static boolean isScramble(String s1, String s2)
 {
